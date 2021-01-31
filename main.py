@@ -1,7 +1,7 @@
-import paddlehub as hub
+import paddlehub
 import cv2
 
-module = hub.Module(name="pyramidbox_lite_mobile_mask")  # 口罩检测模型
+module = paddlehub.Module(name="pyramidbox_lite_mobile_mask")  # 加载口罩检测模型
 face_cascade = cv2.CascadeClassifier(
     "./haarcascade_frontalface_default.xml")  # 人脸识别分类器
 capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # 初始化摄像头
@@ -15,7 +15,6 @@ while(True):
     faces = face_cascade.detectMultiScale(gray, 1.1, 5)
 
     if len(faces) > 0:
-
         for faceRect in faces:
             x, y, w, h = faceRect
             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
